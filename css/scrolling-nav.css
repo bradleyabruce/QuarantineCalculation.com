@@ -1,0 +1,231 @@
+/*!
+ * Start Bootstrap - Scrolling Nav (https://startbootstrap.com/template-overviews/scrolling-nav)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/LICENSE)
+ */
+header {
+  padding: 156px 0 100px;
+}
+
+section {
+  padding: 150px 0;
+}
+
+/* Mobile */
+@media screen and (max-width: 768px)
+{
+  .graph
+  {
+    width: 600px;
+  }
+
+  .center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  
+  label{
+    display: block;
+    float: left;
+    clear: left;
+    padding-right: 10px;
+    width: 30%;
+    text-align: right;
+  }
+  
+  .field {
+  display: block;
+  float: left;
+  width: 50%
+  }
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 992px)
+{
+  .graph
+  {
+    width: 690px;
+  }
+
+  .center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+  }
+
+  label{
+    display: block;
+    float: left;
+    clear: left;
+    padding-right: 10px;
+    width: 30%;
+    text-align: right;
+  }
+  
+  .field {
+  display: block;
+  float: left;
+  width: 40%
+  }
+}
+
+/* weird middle size */
+@media screen and (min-width: 992px) and (max-width: 1200px)
+{
+
+.pieChartc{
+  float: left;
+  width: 50%;
+}
+
+.pieChartr:after
+{
+  content: "";
+  display: table;
+  clear: both;
+}
+
+  .graph
+  {
+    width: 930px;
+  }
+
+  .center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+  }
+
+  label{
+    display: block;
+    float: left;
+    clear: left;
+    padding-right: 10px;
+    width: 30%;
+    text-align: right;
+  }
+  
+  .field {
+  display: block;
+  float: left;
+  width: 40%
+  }
+}
+
+/* full screen */
+@media screen and (min-width: 1200px)
+{
+
+.pieChartc{
+  float: left;
+  width: 50%;
+}
+
+.pieChartr:after
+{
+  content: "";
+  display: table;
+  clear: both;
+}
+
+  .graph
+  {
+    width: 1100px;
+  }
+
+  .center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+  }
+
+  label{
+    display: block;
+    float: left;
+    clear: left;
+    padding-right: 10px;
+    width: 30%;
+    text-align: right;
+  }
+  
+  .field {
+  display: block;
+  float: left;
+  width: 40%
+  }
+}
+
+.scrollmenu
+{
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.detail
+{
+  font-size: small;
+  color: gray;
+}
+
+table, th, td {
+  border: 1px solid black;
+  padding: 7px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+ .twitButton {
+  color:white;
+  position:relative;
+  height:40px;
+  box-sizing:border-box;
+  background-color:#1b95e0;
+  border-radius:3px;
+  font-weight:500;
+  cursor:pointer;
+  width: 200px;
+ }
+ .btn:active,
+ .btn:focus,
+ .twitButton:hover {
+  background-color:#0c7abf
+ }
+
+
+ .scrollBoy
+ {
+  overflow-x: auto;
+ }
+
+
+ ::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+  width: 12px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, .5);
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;  
+  background-color: #ffffff; 
+}
+
+

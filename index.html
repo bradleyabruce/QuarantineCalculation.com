@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Social Distancing Calculator">
+  <meta name="author" content="Bradley Bruce">
+
+  <title>Social Distancing Calculator</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/scrolling-nav.css" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Social Distancing Calculator</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#Calculate">Calculate</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#Data" id="dataNav" style="display: none;">Calculate</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="https://www.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">CDC.gov</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/index.html" targer="_blank">Latest Updates</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#About">About Social Distancing Calculator</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-primary text-white">
+    <div class="container text-center">
+      <h1>Calculate how much good you are doing by staying home.</h1>
+      <p class="lead">The Centers for Disease Control and Prevention is currently responding to the first global pandemic since 1918. Governments around the world have ordered people to stay home if possible to slow the spread of COVID-19.</p>
+      <p>This website will attempt to show you why. </p>
+    </div>
+  </header>
+
+  <section id="Calculate">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Calculate</h2>
+
+          <p class="lead">Social Distancing Calculator uses data provided by the CDC and reports from Wuhan, China to calculate how much damage you would do by not social distancing.</p>
+        </br>
+          <label >Country </label>
+          <select id="countrySelection" required="true" class="field">
+            <option value="UnitedStates">United States</option>
+          </select>
+        </br>
+          <label for="datePicker">Date of leaving quarantine </label>
+          <input type="date" id="datePicker" min="2020-01-01" class="field">
+        </br>
+          <label >Enviroment </label>
+          <select id="enviromentSelection" required="true" class="field">
+            <option value="Urban">Urban</option>
+            <option value="Rural">Rural</option>
+          </select>
+        </br>
+        </br>
+      </br>
+        <button type="submit" id="CalculateBtn" class="btn btn-primary center"  >Calculate</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="Data" style="display: none;">
+    <div id="Congrats" class="container">
+      <div class="row">
+        <div class="col-lg mx-auto">
+          <h2>Congratulations!</h2>
+          <p class="lead">This is an estimate of the number of individuals you could potentially infect directly if you left quarantine while contagious with COVID-19 over the course of 30 days. The table shows the amount of direct infections you are stopping by social distancing. The line graph below shows three separate data points:</p>
+          <a href="https://twitter.com/intent/tweet?button_hashtag=wow&ref_src=twsrc%5Etfw" class="btn btn-primary" data-text="I just found out how much good I am doing by #SocialDistancing, you can too!" data-url="https://www.SocialDistancingCalculator.com" data-show-count="false">Tweet #tweet</a>
+
+
+        </div>
+      </div>
+    </div> 
+
+    <div id="DirectInfections" class="container">
+      <div class="row">
+        <div class="col-lg mx-auto">
+          <h2>Direct Infections</h2>
+          <p class="lead">This is an estimate of the number of individuals you could potentially infect directly if you left quarantine while contagious with COVID-19 over the course of 30 days. The table shows the amount of direct infections you are stopping by social distancing. The line graph below shows three separate data points:</p>
+          <ul>
+            <li>The number of direct infections that would occur if an infected individual stopped social distancing now.</li>
+            <li>The number of direct infections that would occur if an infected individual stopped social distancing 15 days ago.</li>
+            <li>The number of direct infections that would occur if an infected individual stopped social distancing 15 days from now.</li>
+          </ul>
+        </br>
+          <!-- Data Table -->
+          <div class="scrollBoy">
+            <table id="DirectInfectionTable" class="graph"></table> 
+          </div>
+        </br>
+          <div class="scrollBoy">
+            <div id="directInfectionsLineGraph" class="graph"></div>
+          </div>
+          <p>Assumptions:</p>
+          <ul>
+          <li class="detail">3% Infection rate.</li>
+          <li class="detail">You are contagious for 38 days (the upper limit observed in Wuhan, China during the initial outbreak of COVID-19).</li>
+          <li class="detail">Individuals in urban enviroments will come in contact with 30 new individuals per day.</li>
+          <li class="detail">Individuals in rural enviroments will come in contact with 10 new individuals per day.</li>
+          </ul>
+        </div>
+      </div>
+    </div> 
+  </br>
+  </br> 
+    <div id="IndirectInfections" class="container">
+      <div class="row">
+        <div class="col-lg mx-auto">
+          <h2>Indirect Infections</h2>
+          <p class="lead">This is an estimate of the number of individuals you could potential infect indirectly (community spread) while contagious with COVID-19 over the course of 6 months. </p>
+</br>
+          <div class="scrollBoy">
+            <table id="IndirectInfectionTable" class="graph"></table> 
+          </div>
+</br>
+          <div class="scrollBoy">
+          <div id="indirectInfectionLineGraphDiv" class="graph"></div>
+          </div>
+</br>
+        <div id="piChartDiv" class="pieChartr">
+          <div id="indirectInfectionSeverityPieGraphDiv" class="pieChartc"></div>
+          <div id="indirectInfectionDeathRatioPieGraphDiv" class="pieChartc"></div>
+        </div>
+</br>
+          <p>Assumptions:</p>
+          <ul>
+          <li class="detail">3% Infection rate.</li>
+          <li class="detail">Every newly infected individual has 8 to 15 days of viral incubation where they are not contagious.</li>
+          <li class="detail">After their incubation period, each individual is contagious for 8 to 37 days when is virus is actively producing new nRNA.</li>
+          <li class="detail">When an idividual is infected, they have a 38% chance of having general symptoms, 35% chance of having severe symptoms, and 28% of having critial symptoms</li>
+          <li class="detail">Individuals with severe symptioms have a 22% chance of dying per day after 8 to 20 days of showing symptoms</li>
+          <li class="detail">Individuals with critical symptoms have a 78% change of dying per day after 8 to 20 days of showing symptoms</li>
+          <li class="detail">Individuals in urban enviroments will come in contact with 30 new individuals per day.</li>
+          <li class="detail">Individuals in rural enviroments will come in contact with 10 new individuals per day.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="About">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>About Social Distancing Calculator</h2>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; SocialDistancingCalculator.com 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom JavaScript for this theme -->
+  <script src="js/scrolling-nav.js"></script>
+
+</body>
+
+</html>
