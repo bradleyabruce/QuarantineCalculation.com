@@ -7,7 +7,7 @@
   <meta name="description" content="Social Distancing Calculator">
   <meta name="author" content="Bradley Bruce">
 
-  <title>Social Distancing Calculator</title>
+  <title>Quarantine Calculation</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Social Distancing Calculator</a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Quarantine Calculation</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -38,10 +38,10 @@
             <a class="nav-link js-scroll-trigger" href="https://www.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">CDC.gov</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/index.html" targer="_blank">Latest Updates</a>
+            <a class="nav-link js-scroll-trigger" href="https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/index.html" target="_blank">Latest Updates</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#About">About Social Distancing Calculator</a>
+            <a class="nav-link js-scroll-trigger" href="#About">About Social Quarantine Calculation</a>
           </li>
         </ul>
       </div>
@@ -51,27 +51,41 @@
   <header class="bg-primary text-white">
     <div class="container text-center">
       <h1>Calculate how much good you are doing by staying home.</h1>
-      <p class="lead">The Centers for Disease Control and Prevention is currently responding to the first global pandemic since 1918. Governments around the world have ordered people to stay home if possible to slow the spread of COVID-19.</p>
+      <p class="lead">Social distancing is one of the most effective things individuals can do to slow the spread of a disease due to how rapidly a population can become infected over time. The Center for Disease Control and Prevention is currently responding to the first global pandemic since 1918. Governments around the world have ordered people to stay home if possible to slow the spread of COVID-19.</p>
       <p>This website will attempt to show you why. </p>
     </div>
   </header>
 
+
+  <div class="alert alert-danger" role="alert" style="text-align: center;">
+    If you or anyone you know believe that they have COVID-19, please consult your healthcare provider before going to the emergency room
+  </div>
+
+  <div class="alert alert-warning alert-dismissible fade show" role="alert" style="text-align: center;">
+    This website is not optimized for Safari.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
   <section id="Calculate">
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 mx-auto">
+        <div class="col-lg mx-auto">
           <h2>Calculate</h2>
 
-          <p class="lead">Social Distancing Calculator uses data provided by the CDC and reports from Wuhan, China to calculate how much damage you would do by not social distancing.</p>
+          <p class="lead">Quarantine Calculation uses data provided by the CDC and reports from Wuhan, China to calculate how much damage you would do by not social distancing. Simply enter a hypothetical date that you want to stop (please do not actually stop) social distancing.</p>
         </br>
           <label >Country </label>
           <select id="countrySelection" required="true" class="field">
             <option value="UnitedStates">United States</option>
           </select>
         </br>
-          <label for="datePicker">Date of leaving quarantine </label>
-          <input type="date" id="datePicker" min="2020-01-01" class="field">
+      </br>
+          <label for="datePicker" >Date of leaving quarantine </label>
+          <input type="date" id="datePicker" min="2020-01-01" class="field" style="height: 30px;">
         </br>
+      </br>
           <label >Enviroment </label>
           <select id="enviromentSelection" required="true" class="field">
             <option value="Urban">Urban</option>
@@ -80,7 +94,8 @@
         </br>
         </br>
       </br>
-        <button type="submit" id="CalculateBtn" class="btn btn-primary center"  >Calculate</button>
+      </br>
+        <button type="submit" id="CalculateBtn" class="btn btn-primary center">Calculate</button>
         </div>
       </div>
     </div>
@@ -91,10 +106,8 @@
       <div class="row">
         <div class="col-lg mx-auto">
           <h2>Congratulations!</h2>
-          <p class="lead">This is an estimate of the number of individuals you could potentially infect directly if you left quarantine while contagious with COVID-19 over the course of 30 days. The table shows the amount of direct infections you are stopping by social distancing. The line graph below shows three separate data points:</p>
-          <a href="https://twitter.com/intent/tweet?button_hashtag=wow&ref_src=twsrc%5Etfw" class="btn btn-primary" data-text="I just found out how much good I am doing by #SocialDistancing, you can too!" data-url="https://www.SocialDistancingCalculator.com" data-show-count="false">Tweet #tweet</a>
-
-
+          <p class="lead" id="congratsMessage"></p>  
+</br>      
         </div>
       </div>
     </div> 
@@ -103,11 +116,13 @@
       <div class="row">
         <div class="col-lg mx-auto">
           <h2>Direct Infections</h2>
-          <p class="lead">This is an estimate of the number of individuals you could potentially infect directly if you left quarantine while contagious with COVID-19 over the course of 30 days. The table shows the amount of direct infections you are stopping by social distancing. The line graph below shows three separate data points:</p>
+          <p class="lead">This is an estimate of the number of individuals you could potentially directly infect if you left quarantine while contagious with COVID-19 over a period of 30 days. 
+          <p>The table shows the number of potential direct infections you are stopping over the course of 30 days by social distancing.</p>
+          <p>The line graph below shows three separate data points:</p>
           <ul>
-            <li>The number of direct infections that would occur if an infected individual stopped social distancing now.</li>
-            <li>The number of direct infections that would occur if an infected individual stopped social distancing 15 days ago.</li>
-            <li>The number of direct infections that would occur if an infected individual stopped social distancing 15 days from now.</li>
+            <li>The number of direct infections that would occur if an infected individual stopped social distancing on the date selected above.</li>
+            <li>The number of direct infections that would occur if an infected individual stopped social distancing 15 days before the date selected above.</li>
+            <li>The number of direct infections that would occur if an infected individual stopped social distancing 15 days after the date selected above.</li>
           </ul>
         </br>
           <!-- Data Table -->
@@ -134,7 +149,7 @@
       <div class="row">
         <div class="col-lg mx-auto">
           <h2>Indirect Infections</h2>
-          <p class="lead">This is an estimate of the number of individuals you could potential infect indirectly (community spread) while contagious with COVID-19 over the course of 6 months. </p>
+          <p class="lead">Community spread is the spread of a disease through a population where the source of the infection is unknown. This occurs when individuals begin spreading a disease to others in great enough number to make it impossible to know who infected who. This type of spread grows exponentially because for every new individual that becomes infected, the rate at which infection occurs also increases. This is an estimate of the number of individuals you could potential indirectly infect and kill through others while contagious with COVID-19 over the course of 2 months. </p>
 </br>
           <div class="scrollBoy">
             <table id="IndirectInfectionTable" class="graph"></table> 
@@ -154,9 +169,10 @@
           <li class="detail">3% Infection rate.</li>
           <li class="detail">Every newly infected individual has 8 to 15 days of viral incubation where they are not contagious.</li>
           <li class="detail">After their incubation period, each individual is contagious for 8 to 37 days when is virus is actively producing new nRNA.</li>
-          <li class="detail">When an idividual is infected, they have a 38% chance of having general symptoms, 35% chance of having severe symptoms, and 28% of having critial symptoms</li>
-          <li class="detail">Individuals with severe symptioms have a 22% chance of dying per day after 8 to 20 days of showing symptoms</li>
-          <li class="detail">Individuals with critical symptoms have a 78% change of dying per day after 8 to 20 days of showing symptoms</li>
+          <li class="detail">When an idividual is infected, they have a 38% chance of having general symptoms, 35% chance of having severe symptoms, and 28% of having critial symptoms.</li>
+          <li class="detail">Individuals with general symptioms do not have a chance of dying.</li>
+          <li class="detail">Individuals with severe symptioms have a 22% chance of dying per day after 8 to 20 days of showing symptoms.</li>
+          <li class="detail">Individuals with critical symptoms have a 78% change of dying per day after 8 to 20 days of showing symptoms.</li>
           <li class="detail">Individuals in urban enviroments will come in contact with 30 new individuals per day.</li>
           <li class="detail">Individuals in rural enviroments will come in contact with 10 new individuals per day.</li>
           </ul>
@@ -165,21 +181,24 @@
     </div>
   </section>
 
-  <section id="About">
-    <div class="container">
+  <section id="About" class="container">
       <div class="row">
-        <div class="col-lg-8 mx-auto">
+        <div class="col-lg mx-auto">
           <h2>About Social Distancing Calculator</h2>
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+          <p class="lead">Quarantine Calculation uses a variety of data sources to calculate the most likely possible infection rates. Epidemology, or the study of the spread of diseases, is difficult in any situation, but even more so during an active pandemic due to a variety of factors. All results on this website are estimates based on observed data from the initial outbreak of COVID-19 in Wuhan, China and should not be taken as scientific fact. This website's purpose is to simply show how the exponential spead of a disease can affect many people over time. </p>
+</br>
+          <h5>Sources:</h5>
+          <p>Coronavirus Disease 2019 (COVID-19). (2020, March 21). Retrieved March 24, 2020, from https://www.cdc.gov/coronavirus/2019-ncov/index.html </p>
+          <p>McIntosh, K. (2020). Coronavirus disease 2019 (COVID-19). Wolters Kluwer, 1–41.</p>
+          <p>Zhou, F., Yu, T., Du, R., Fan, G., Liu, Y., Liu, Z., … Cao, B. (2020). Clinical course and risk factors for mortality of adult inpatients with COVID-19 in Wuhan, China: a retrospective cohort study. The Lancet. doi: 10.1016/s0140-6736(20)30566-3 </p>
         </div>
       </div>
-    </div>
   </section>
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; SocialDistancingCalculator.com 2020</p>
+      <p class="m-0 text-center text-white">Copyright &copy; QuarantineCalculation.com 2020</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -193,6 +212,9 @@
 
   <!-- Custom JavaScript for this theme -->
   <script src="js/scrolling-nav.js"></script>
+
+  <!-- Ad Sense -->
+  <script data-ad-client="ca-pub-5636991328657164" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 </body>
 

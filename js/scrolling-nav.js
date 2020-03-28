@@ -110,7 +110,7 @@ function Calculate(country, date, enviroment)
   nowEstimateArray = getDirectEstimateDataBetweenTwoDates(dateStarted, dateEnded, CONTACTS_PER_DAY, INFECTION_RATE, UPPER_CONTAGIOUS_PERIOD);
   earlyEstimateArray = getDirectEstimateDataBetweenTwoDates(earlierDateStarted, dateEnded, CONTACTS_PER_DAY, INFECTION_RATE, UPPER_CONTAGIOUS_PERIOD);
   lateEstimateArray = getDirectEstimateDataBetweenTwoDates(laterDateStarted, dateEnded, CONTACTS_PER_DAY, INFECTION_RATE, UPPER_CONTAGIOUS_PERIOD);
-  DrawDirectInfectionsGraph(nowEstimateArray, earlyEstimateArray, lateEstimateArray, earlierDateStarted, dateEnded);
+  DrawDirectInfectionsGraph(nowEstimateArray, earlyEstimateArray, lateEstimateArray, earlierDateStarted, dateEnded, dateStarted, laterDateStarted);
   FillDirectInfectionsTable(nowEstimateArray);
 
   //Indirect Infections
@@ -120,7 +120,8 @@ function Calculate(country, date, enviroment)
   DrawIndirectInfectionsGraph(indirectInfectionsEstimateArray, dateStarted, indirectEndDate);
   DrawIndirectInfectionsPieChart(indirectInfectionsEstimateArray);
   DrawIndirectDeathsPieChart(indirectInfectionsEstimateArray);
-  FillIndirectInfectionsTable(indirectInfectionsEstimateArray);
+  //draw table and get count
+  var totalInfectedCount = FillIndirectInfectionsTable(indirectInfectionsEstimateArray);
 
   //show the graph for the user
   var dataDiv = document.getElementById("Data");
@@ -129,7 +130,9 @@ function Calculate(country, date, enviroment)
   //jump to new data
   var navButton = document.getElementById("dataNav");
   navButton.click();
-  //window.location = 'index.html#Data';
+  
+  WriteCongratulationMessage(totalInfectedCount, dateStarted);
+
 }
 
 /************************** Indirect Calculations ****************************/
@@ -176,7 +179,7 @@ function DrawIndirectDeathsPieChart(dataArray)
     title: {
       display: true,
       position: "top",
-      text: "Surviability of Total Population",
+      text: "Surviability of Infected Population",
       fontSize: 18
     },
     legend: {
@@ -258,6 +261,8 @@ function FillIndirectInfectionsTable(dataArray)
         deathCell.innerHTML = totalDeaths;
       }
    }
+
+   return totalInfectedCount;
 }
 
 function DrawIndirectInfectionsPieChart(indirectInfectionsEstimateArray)
@@ -350,12 +355,12 @@ function DrawIndirectInfectionsGraph(indirectInfectionsEstimateArray, dateStarte
           labels: dateArray,
           datasets: [
             {
-              label: 'Potential indirect infections if you left quarantine today.',
+              label: 'Potential indirect infections.',
               borderColor: 'rgb(255, 99, 132)',
               data: indirectInfectionData
             },
             {
-              label: 'Potential indirect deaths if you left quarantine today.',
+              label: 'Potential indirect deaths.',
               borderColor: 'rgb(0, 0, 0)',
               data: indirectDeathData
             }
@@ -563,7 +568,7 @@ function FillDirectInfectionsTable(dataArray)
    }
 }
 
-function DrawDirectInfectionsGraph(RealEstimateArray, EarlyEstimateArray, LateEstimateArray, estimateEarlierStarted, dateEnded)
+function DrawDirectInfectionsGraph(RealEstimateArray, EarlyEstimateArray, LateEstimateArray, earlierStartedDate, dateEnded, originalStartDate, laterStartDate)
 {
   //find container and clear it of any previous graphs
   var divContainer = document.getElementById('directInfectionsLineGraph');
@@ -575,10 +580,10 @@ function DrawDirectInfectionsGraph(RealEstimateArray, EarlyEstimateArray, LateEs
   //generate graph on canvas
   var ctx = canvas.getContext('2d');
 
-  var dateArray = GenerateDirectDateArray(estimateEarlierStarted, dateEnded);
-  var nowData = GenerateDirectDataFromArray(RealEstimateArray, estimateEarlierStarted);
-  var earlyData = GenerateDirectDataFromArray(EarlyEstimateArray, estimateEarlierStarted);
-  var lateData = GenerateDirectDataFromArray(LateEstimateArray, estimateEarlierStarted);
+  var dateArray = GenerateDirectDateArray(earlierStartedDate, dateEnded);
+  var nowData = GenerateDirectDataFromArray(RealEstimateArray, earlierStartedDate);
+  var earlyData = GenerateDirectDataFromArray(EarlyEstimateArray, earlierStartedDate);
+  var lateData = GenerateDirectDataFromArray(LateEstimateArray, earlierStartedDate);
 
   var chart = new Chart(ctx, {
       // The type of chart we want to create
@@ -589,17 +594,17 @@ function DrawDirectInfectionsGraph(RealEstimateArray, EarlyEstimateArray, LateEs
           labels: dateArray,
           datasets: [
             {
-              label: 'Potential direct infections if you left quarantine 15 days ago.',
+              label: 'Potential direct infections if you left quarantine ' + earlierStartedDate.toDateString() + '.',
               borderColor: 'rgb(64, 127, 255)',
               data: earlyData
             },
             {
-              label: 'Potential direct infections if you left quarantine today.',
+              label: 'Potential direct infections if you left quarantine on the date you selected above (' + originalStartDate.toDateString() + ').',
               borderColor: 'rgb(255, 99, 132)',
               data: nowData
             },
             {
-              label: 'Potential direct infections if you leave quarantine 15 days from now.',
+              label: 'Potential direct infections if you left quarantine ' + laterStartDate.toDateString() + '.',
               borderColor: 'rgb(101, 255, 162)',
               data: lateData
             }
@@ -705,6 +710,12 @@ function getDirectEstimateDataBetweenTwoDates(startDate, endDate, contactsPerDay
 /*************************** End Direct Calculations ********************/
 
 /*************************** General Methods ******************************/
+
+function WriteCongratulationMessage(totalInfected, dateStarted)
+{
+    var p = document.getElementById("congratsMessage");
+    p.innerHTML = "You are saving lives and making a difference by staying indoors and away from people! If you were to leave quarantine on " + dateStarted.toDateString() + " you could potentially infect " + totalInfected.toLocaleString() + " people over the course of 2 months! You should take pride in knowing you are doing so much by staying home. Take a look at the information below to see how that number was calculated.";
+}
 
 function addMonths(date, months)
 {
